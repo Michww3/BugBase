@@ -6,20 +6,35 @@ using System.Windows.Forms;
 namespace BugBase
 {
     public partial class Form1 : Form
-    {
+    {   
+
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void SaveButton_Click(object sender, EventArgs e)
+        private async void SaveButton_Click(object sender, EventArgs e)
         {
-            using (AppDbContext dbContext = new AppDbContext())
+            string name = NameTextBox.Text;
+            string description = DescriptionTextBox.Text;
+            string priority = PriorityComboBox.Text;
+            DateTime end = EndDatePicker.Value;
+            bool isComplete = StatusCheckBox.Checked;
+
+            using (AppDbContext context = new AppDbContext())
             {
-                Bug bug = new Bug("1","2","3", DateTime.Now, true);
-                dbContext.Bugs.Add(bug);
-                dbContext.SaveChanges();
+                context.Bugs.Add(new Bug(name, description, priority, end, isComplete));
+                await context.SaveChangesAsync();
             }
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            NameTextBox.Text = string.Empty;
+            DescriptionTextBox.Text = string.Empty;
+            PriorityComboBox.Text = string.Empty;
+            EndDatePicker.Value = DateTime.Now;
+            StatusCheckBox.Checked = false;
         }
     }
 }

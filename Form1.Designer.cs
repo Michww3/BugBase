@@ -150,6 +150,7 @@
             this.ClearButton.TabIndex = 11;
             this.ClearButton.Text = "Clear";
             this.ClearButton.UseVisualStyleBackColor = true;
+            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
             // DeleteButton
             // 
