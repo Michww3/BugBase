@@ -11,6 +11,7 @@ namespace BugBase.Helpers
         }
 
         public DbSet<Bug> Bugs { get; set; }
+        public DbSet<Employe> Employes { get; set; }
 
     }
 }

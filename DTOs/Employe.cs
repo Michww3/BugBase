@@ -9,5 +9,11 @@ namespace BugBase.DTOs
         public string Profession { get; set; }
 
         public List<Bug> bugs { get; set; }
+
+        public Employe(string name, string profession) 
+        {
+            Name = name;
+            Profession = profession;
+        }
     }
 }
